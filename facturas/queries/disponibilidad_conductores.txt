@@ -1,0 +1,14 @@
+SELECT
+    dia.id,
+	dtl.tipo,
+	dia.fk_responsable,
+    dia.estado,
+    dia.fecha_desde,
+    dia.fecha_hasta,
+    dia."createdAt",
+    dia."updatedAt",
+    dia.fk_usuario,
+    dia.fk_tipo_dia,
+    dtl.color
+FROM calendario_dias_libres as dia
+LEFT JOIN dias_libres_tipos dtl ON dia.fk_tipo_dia = dtl.id

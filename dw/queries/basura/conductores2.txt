@@ -1,0 +1,8 @@
+SELECT usu.usu_rut, usu.usu_tipo, usu.usu_estado, usu.usu_nombre, usu.usu_apellido, 
+usu.ult_empt, usu.ult_empt_tipo, usu.login, usu."createdAt", usu."updatedAt",
+       emp.empt_nombre, emp.empt_razonsocial,
+	   emp.rut AS emp_rut, emp.id AS emp_id, 
+	   emp.estado AS emp_estado, emp.tipo AS emp_tipo
+FROM public.usuarios usu
+LEFT JOIN public.empresas_transportes emp ON usu.ult_empt = emp.id
+;

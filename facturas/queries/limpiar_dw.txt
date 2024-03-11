@@ -1,0 +1,13 @@
+DELETE FROM public.fact_servicios;
+DELETE FROM public.etapa;
+DELETE FROM public.caracteristicas;
+DELETE FROM public.cliente_despacho;
+DELETE FROM public.cliente_facturacion;
+DELETE FROM public.comercial;
+DELETE FROM public.conductor;
+DELETE FROM public.direccion_llegada;
+DELETE FROM public.direccion_salida;
+DELETE FROM public.nave;
+DELETE FROM public.real_time_arribo;
+DELETE FROM public.real_time_salida;
+DELETE FROM public.time;

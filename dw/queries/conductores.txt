@@ -1,0 +1,40 @@
+SELECT 
+
+
+    /* fact table */
+        dia.id AS dia_libre_id, /* int */
+	dia.fk_tipo_dia AS fk_tipo_permiso, /* string */ 
+	dtl.tipo AS tipo_permiso, /* string */
+        
+        
+    /* dimension usuario*/
+        /* int */
+	dia.fk_usuario AS rut_conductor, /* string */
+	CONCAT(usu.usu_nombre, ' ', usu.usu_apellido) AS nombre_completo_conductor, /* string */
+        usu.usu_tipo AS tipo_empleado, /* string */
+        dia.estado AS estado_empleado, /* string */
+	usu.usu_estado AS estado_empleado2, /* string */
+	usu.ult_empt_tipo AS empleado_tipo, /* string */
+	usu."createdAt" AS usu_createdAt, /* fecha con hora */
+        usu."updatedAt" AS usu_updatedAt, /* fecha con hora */
+        emp.rut AS rut_empresa, /* string */
+	emp.empt_nombre AS empresa_nombre, /* string */
+        emp.empt_razonsocial AS empresa_razon_social, /* string */
+	emp.tipo AS empresa_tipo,/* string */
+	emp.id AS empresa_id, /* string */
+        emp.estado AS empresa_estado, /* string */
+	dia.fk_responsable AS responsable, /* string */
+         
+	
+    /* dimension_fecha */
+         /* int */
+        dia.fecha_desde, /* tipo fecha con hora */
+        dia.fecha_hasta, /* tipo fecha con hora */
+        dia."createdAt" AS dia_pedido, /* tipo fecha con hora */
+        dia."updatedAt" AS dia_actualizado /* tipo fecha con hora */
+	
+ 
+FROM calendario_dias_libres as dia
+LEFT JOIN dias_libres_tipos dtl ON dia.fk_tipo_dia = dtl.id
+LEFT JOIN public.usuarios usu ON dia.fk_usuario = usu.usu_rut
+LEFT JOIN public.empresas_transportes emp ON usu.ult_empt = emp.id;

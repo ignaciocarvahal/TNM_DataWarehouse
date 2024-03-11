@@ -1,0 +1,141 @@
+-- Crear tabla fact_servicios
+CREATE TABLE IF NOT EXISTS public.fact_servicios (
+    fk_cliente INT,
+    fk_conductor INT,
+    fk_comercial INT,
+    fk_agencia INT,
+    fk_etapa INT,
+    fk_servicio INT,
+    fk_direccion INT,
+    fk_cliente_despacho INT,
+    fk_caracteristicas INT,
+    fk_nave INT,
+    id INT PRIMARY KEY
+);
+
+-- Crear tabla etapa
+CREATE TABLE IF NOT EXISTS public.etapa (
+    id_etapa SERIAL PRIMARY KEY,
+    titulo VARCHAR(255),
+    codigo VARCHAR(255),
+    kilometros FLOAT,
+    atraso VARCHAR(255),
+    diferencia_minutos FLOAT,
+    tiempo_estadia FLOAT,
+    fk_servicio INT
+);
+
+-- Crear tabla cliente_facturacion
+CREATE TABLE IF NOT EXISTS public.cliente_facturacion (
+    id_customer SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    rut VARCHAR(255),
+    fk_servicio INT
+);
+
+-- Crear tabla conductor
+CREATE TABLE IF NOT EXISTS public.conductor (
+    id_conductor SERIAL PRIMARY KEY,
+    nombre VARCHAR(255),
+    rut VARCHAR(255),
+    fk_servicio INT
+);
+
+-- Crear tabla comercial
+CREATE TABLE IF NOT EXISTS public.comercial (
+    id_comercial SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    rut VARCHAR(255),
+    fk_servicio INT
+);
+
+-- Crear tabla cliente_despacho
+CREATE TABLE IF NOT EXISTS public.cliente_despacho (
+    id_cliente_despacho SERIAL PRIMARY KEY,
+    nombre VARCHAR(255),
+    rut VARCHAR(255),
+    fk_servicio INT
+);
+
+-- Crear tabla nave
+CREATE TABLE IF NOT EXISTS public.nave (
+    id_nave SERIAL PRIMARY KEY,
+    nombre VARCHAR(255),
+    fk_servicio INT
+);
+
+-- Crear tabla caracteristicas
+CREATE TABLE IF NOT EXISTS public.caracteristicas (
+    id_caracteristicas SERIAL PRIMARY KEY,
+    tamano_contenedor VARCHAR(255),
+    peso_carga VARCHAR(255),
+    impo_expo VARCHAR(255),
+    dry VARCHAR(255),
+    numero_contenedor VARCHAR(255),
+    full_lcl VARCHAR(255),
+    fk_servicio INT
+);
+
+-- Crear tabla direccion_salida
+CREATE TABLE IF NOT EXISTS public.direccion_salida (
+    id_direccion_salida SERIAL PRIMARY KEY,
+    comuna VARCHAR(255),
+    direccion VARCHAR(255),
+    longitud FLOAT,
+    latitud FLOAT,
+    fk_servicio INT
+);
+
+-- Crear tabla direccion_llegada
+CREATE TABLE IF NOT EXISTS public.direccion_llegada (
+    id_direccion SERIAL PRIMARY KEY,
+    comuna VARCHAR(255),
+    direccion VARCHAR(255),
+    longitud FLOAT,
+    latitud FLOAT,
+    fk_servicio INT
+);
+
+-- Crear tabla time
+CREATE TABLE IF NOT EXISTS public.time (
+    id_time SERIAL PRIMARY KEY,
+    etapa_1_fecha TIMESTAMP,
+    fk_servicio INT
+);
+
+-- Crear tabla real_time_arribo
+CREATE TABLE IF NOT EXISTS public.real_time_arribo (
+    id_real_time SERIAL PRIMARY KEY,
+    fecha_real_arribo TIMESTAMP,
+    fk_servicio INT
+);
+
+-- Crear tabla real_time_salida
+CREATE TABLE IF NOT EXISTS public.real_time_salida (
+    id_real_time SERIAL PRIMARY KEY,
+    fecha_real_salida TIMESTAMP,
+    fk_servicio INT
+);
+
+
+
+-- Agregar restricciones de clave externa a la tabla etapa
+ALTER TABLE public.etapa ADD CONSTRAINT fk_etapa_direccion_salida FOREIGN KEY (id_direccion_salida) REFERENCES public.direccion_salida (id_direccion_salida);
+ALTER TABLE public.etapa ADD CONSTRAINT fk_etapa_direccion_llegada FOREIGN KEY (fk_direccion_llegada) REFERENCES public.direccion_llegada (id_direccion);
+ALTER TABLE public.etapa ADD CONSTRAINT fk_etapa_time FOREIGN KEY (fk_time) REFERENCES public.time (id_time);
+ALTER TABLE public.etapa ADD CONSTRAINT fk_etapa_real_time_arribo FOREIGN KEY (fk_real_time_arribo) REFERENCES public.real_time_arribo (id_real_time);
+ALTER TABLE public.etapa ADD CONSTRAINT fk_etapa_real_time_salida FOREIGN KEY (fk_real_time_salida) REFERENCES public.real_time_salida (id_real_time);
+
+
+-- Definir llaves foraneas después de haber creado todas las tablas
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_cliente FOREIGN KEY (id_cliente) REFERENCES public.cliente_facturacion (id_customer);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_conductor FOREIGN KEY (id_conductor) REFERENCES public.conductor (id_conductor);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_comercial FOREIGN KEY (id_comercial) REFERENCES public.comercial (id_comercial);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_agencia FOREIGN KEY (id_agencia) REFERENCES public.agencia (id_agencia);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_etapa FOREIGN KEY (id_etapa) REFERENCES public.etapa (id_etapa);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_servicio FOREIGN KEY (id_servicio) REFERENCES public.etapa (fk_servicio);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_direccion FOREIGN KEY (id_direccion) REFERENCES public.direccion_llegada (id_direccion);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_cliente_despacho FOREIGN KEY (id_cliente_despacho) REFERENCES public.cliente_despacho (id_cliente_despacho);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_caracteristicas FOREIGN KEY (id_caracteristicas) REFERENCES public.caracteristicas (id_caracteristicas);
+ALTER TABLE public.fact_servicios ADD CONSTRAINT fk_fact_servicios_nave FOREIGN KEY (id_nave) REFERENCES public.nave (id_nave);
+

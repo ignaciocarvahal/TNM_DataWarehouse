@@ -1,0 +1,4 @@
+SELECT fs.fk_cliente, fs.fk_servicio
+FROM public.fact_servicios fs
+WHERE fs.fk_servicio = (SELECT MAX(fk_servicio) - 50 FROM public.fact_servicios)
+  AND fs.fk_cliente = (SELECT MIN(fk_cliente) FROM public.fact_servicios WHERE fk_servicio = (SELECT MAX(fk_servicio) - 50 FROM public.fact_servicios));
