@@ -27,10 +27,11 @@ schedule.every().day.at("09:20").do(job)
 schedule.every().day.at("11:20").do(job)
 schedule.every().day.at("10:28").do(job)
 schedule.every().day.at("14:40").do(job)
+schedule.every().day.at("16:30").do(job)
 schedule.every().day.at("18:20").do(job)
-schedule.every().day.at("20:20").do(job)
+schedule.every().day.at("19:32").do(job)
 schedule.every().day.at("21:49").do(job)
-schedule.every().day.at("22:00").do(job)
+schedule.every().day.at("23:00").do(job)
 
 #schedule.every().day.at("01:30").do(job)
 
