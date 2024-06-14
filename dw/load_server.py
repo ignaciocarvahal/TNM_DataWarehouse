@@ -524,8 +524,10 @@ def load_fact_table(df, initial_index, tipo_carga='incremental'):
             fecha_hora_datetime = datetime.strptime('00:00', '%H:%M')
             fecha_hora_arribo_datetime = datetime.strptime('00:00', '%H:%M')
             tiempo_estadia = 0
-
-        if fecha_hora_arribo_datetime > fecha_hora_datetime:
+        
+        from datetime import timedelta
+        
+        if fecha_hora_arribo_datetime  > fecha_hora_datetime + timedelta(minutes=15):
             atraso = "Atrasado"
         else:
             atraso = "En tiempo"
