@@ -49,7 +49,7 @@ def connectionDB(query):
 def connectionDB_todf(query):
 
     # Datos de conexión
-    host = "localhost"
+    host = "190.171.188.230"
     port = "5432"  # Puerto predeterminado de PostgreSQL
     database = "topus"  # Reemplazar por el nombre real de la base de datos
     user = "postgres"

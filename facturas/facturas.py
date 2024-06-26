@@ -26,7 +26,7 @@ def incremental_batch_load_facturas():
     db_config = {
         # Datos de conexión
     
-        'host': "3.91.152.225",
+        'host': "3.86.83.8",
         'database': "dw",
         'user': "postgres",
         'password': "ignacio",

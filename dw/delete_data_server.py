@@ -53,7 +53,7 @@ def get_fk_servicio_values():
 
 def delete_records_by_fk_servicio(fk_servicio_values_str):
     # Datos de conexión
-    host = "3.91.152.225"
+    host = "3.86.83.8"
     port = "5432"
     database = "dw"
     user = "postgres"

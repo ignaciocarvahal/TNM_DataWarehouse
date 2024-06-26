@@ -11,11 +11,12 @@ import schedule
 import time
 import datetime
 from incremental_load_server import incremental_batch_load, incremental_batch_load_tomorrow
-
+from online_load_queue import *
 
 def job_planificacion():
     print("Ejecutando el script...")
     incremental_batch_load_tomorrow(1000, 1)
+    
     print("Script ejecutado.")
     
 def job_222():
@@ -45,9 +46,10 @@ def nitan_mini_job():
 def mega_job():
     
     print("Ejecutando el script...")
-    incremental_batch_load(10000, 200)
+    incremental_batch_load(3000, 200)
     
     print("Script ejecutado.")
+    carga_online()
    
 # Programar la ejecución del script todos los días a las 13:00 y 16:30
 #schedule.every().day.at("09:16").do(nitan_mini_job)
@@ -60,9 +62,9 @@ def mega_job():
 #mega carga de datos:
 #schedule.every().day.at("14:09").do(mega_job)
 
-
+mega_job()
 #carga de actualización media
-schedule.every().day.at("20:30").do(mega_job)
+#schedule.every().day.at("20:30").do(mega_job)
 #schedule.every().day.at("09:40").do(job)
 
 
@@ -88,7 +90,7 @@ schedule.every().day.at("20:30").do(mega_job)
 #schedule.every().day.at("08:50").do(mini_job)
 #schedule.every().day.at("12:46").do(job_planificacion)
 #schedule.every().day.at("13:30").do(job_planificacion)
-schedule.every().day.at("14:00").do(job_planificacion)
+#schedule.every().day.at("14:00").do(job_planificacion)
 #schedule.every().day.at("15:59").do(job_planificacion)
 #schedule.every().day.at("16:59").do(job_planificacion)
 #schedule.every().day.at("17:59").do(job_planificacion)

@@ -54,7 +54,7 @@ def incremental_batch_load_conductores():
     hechos['dia'] = pd.to_datetime(hechos['dia'], errors='coerce')
     
     # Datos de conexión
-    host = "3.91.152.225"
+    host = "3.86.83.8"
     port = "5432"
     database = "dw"
     user = "postgres"

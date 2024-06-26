@@ -39,7 +39,7 @@ def load_dimensions(df, initial_index, tipo_carga='increental'):
         es la llave que une el datawarehouse.
     """
     # Datos de conexión
-    host = "3.91.152.225"
+    host = "3.86.83.8"
     port = "5432"  # Puerto predeterminado de PostgreSQL
     database = "dw"  # Reemplazar por el nombre real de la base de datos
     user = "postgres"
@@ -461,7 +461,7 @@ def load_dimensions(df, initial_index, tipo_carga='increental'):
 def load_fact_table(df, initial_index, tipo_carga='incremental'):
 
     # Datos de conexión
-    host = "3.91.152.225"
+    host = "3.86.83.8"
     port = "5432"  # Puerto predeterminado de PostgreSQL
     database = "dw"  # Reemplazar por el nombre real de la base de datos
     user = "postgres"
