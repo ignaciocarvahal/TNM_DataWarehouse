@@ -42,6 +42,9 @@ ser.id as fk_servicio
 , coalesce(eta_1.hora, '') as etapa_1_hora
 , coalesce(eta_1.fecha_real_arribo, '') as fecha_real_arribo
 , coalesce(eta_1.hora_real_arribo, '') as hora_real_arribo
+, coalesce(eta_1.fecha_real_arribo_auto, '') as fecha_real_arribo_auto
+, coalesce(eta_1.hora_real_arribo_auto, '') as hora_real_arribo_auto
+
 , coalesce(eta_1.fecha_real_salida, '') as fecha_real_salida
 , coalesce(eta_1.hora_real_salida, '') as hora_real_salida
 , coalesce(eta_1.tiempo_estadia, '') as tiempo_estadia
@@ -124,6 +127,7 @@ LEFT JOIN public.comunas as com_1 ON dir_salida."comunaComunaId" = com_1.comuna_
 LEFT JOIN public.comunas as com_2 ON dir_llegada."comunaComunaId" = com_2.comuna_id
 
 where ser.estado!=999
+
 and ser.id>{0}
 order by 
 ser.id

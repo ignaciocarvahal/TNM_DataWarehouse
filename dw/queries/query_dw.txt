@@ -41,8 +41,13 @@ ser.id as fk_servicio
 , coalesce (eta_1.titulo, '') as etapa_titulo
 , coalesce(eta_1.fecha, '') as etapa_1_fecha
 , coalesce(eta_1.hora, '') as etapa_1_hora
+
 , coalesce(eta_1.fecha_real_arribo, '') as fecha_real_arribo
 , coalesce(eta_1.hora_real_arribo, '') as hora_real_arribo
+
+, coalesce(eta_1.fecha_real_arribo_auto, '') as fecha_real_arribo
+, coalesce(eta_1.hora_real_arribo_auto, '') as hora_real_arribo
+
 , coalesce(eta_1.fecha_real_salida, '') as fecha_real_salida
 , coalesce(eta_1.hora_real_salida, '') as hora_real_salida
 , coalesce(eta_1.tiempo_estadia, '') as tiempo_estadia
@@ -145,4 +150,5 @@ where ser.estado!=999
 order by 
 ser.id
 asc
+
 ;

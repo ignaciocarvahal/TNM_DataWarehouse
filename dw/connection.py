@@ -85,13 +85,17 @@ def connectionDB_todf(query):
 
     return df
 
+
 def connectionDB_todf2(query):
+    
+    
+
     # Datos de conexión
     host = "190.171.188.230"
     port = "5432"  # Puerto predeterminado de PostgreSQL
     database = "topusDB"  # Reemplazar por el nombre real de la base de datos
-    user = "user_solo_lectura"
-    password = "4l13nW4r3.C0ntr4s3n4.S0l0.L3ctur4"
+    user = "postgres"
+    password = "p0stgr3s.n0djs.r00t"
     try:
         # Establecer la conexión
         connection = psycopg2.connect(
